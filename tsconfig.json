@@ -1,0 +1,38 @@
+// {
+//   "compileOnSave": false,
+//   "compilerOptions": {
+//     "baseUrl": "./",
+//     "target": "es6",
+//     "module": "commonjs",
+//     "moduleResolution": "node",
+//     "sourceMap": true,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "lib": ["es5", "es6", "dom"],
+//     "noImplicitAny": true,
+//     "suppressImplicitAnyIndexErrors": true,
+//     "types": ["node"],
+//     "typeRoots": ["./node_modules/@types"]
+//   },
+//   "exclude": ["node_modules", "src/main.aot.ts", "aot", "**.spec.ts"]
+// }
+
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+      "baseUrl": "./",
+      "outDir": "./dist/out-tsc",
+      "sourceMap": true,
+      "declaration": false,
+      "downlevelIteration": true,
+      "experimentalDecorators": true,
+      "moduleResolution": "node",
+      "importHelpers": true,
+      "target": "es2015",
+      "module": "es2020",
+      "lib": [
+        "es2018",
+        "dom"
+      ]
+    }
+  }
