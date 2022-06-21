@@ -97,14 +97,32 @@ angular 13 AOT without clis
 	platformBrowserDynamic().bootstrapModule(AppModule);
 
 12. install these packages as dev dependencies
-	npm i -D mini-css-extract-plugin 
 	npm i -D html-webpack-plugin 
 	npm i -D ts-loader
 	npm i -D babel-loader
 	npm i -D angular2-template-loader
 	npm i -D html-loader
 	npm i -D file-loader
-	npm i -D css-loader
+	npm i -D raw-loader
 	npm i -D webpack-merge
-	npm i -D @babel/core --save
+	npm i -D @babel/core
+  npm i -D @ngtools/webpack
+  npm i -D sass-loader
+
+
+13.  create a main-prod.ts and tsconfig-prod.json as per the files
+
+
+  To Run in development mode
+  --------------------------
+  change the env to dev in webpack.config.json
+  change the template and style to require('path...') in components/directives
+  npm run dev 
+
+
 	
+  To build in production mode
+  --------------------------
+  change the env to prod in webpack.config.json
+  change the template and style to string './path/to/resources' in components/directives
+  npm run build

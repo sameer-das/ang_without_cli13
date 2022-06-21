@@ -1,12 +1,16 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: {
-    polyfills: path.resolve(__dirname, "..", "src", "polyfills"),
-    main: path.resolve(__dirname, "..", "src", "main"),
+
+  output: {
+    path: path.resolve(__dirname, '..', 'dist'),
+    filename: '[name].bundle.js',
+    publicPath: '/',
+    chunkFilename: '[id].chunk.js',
+    clean: true
+
   },
   resolve: {
     extensions: [".ts", ".js"],
@@ -14,42 +18,53 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        use: ["babel-loader", "ts-loader", "angular2-template-loader"],
-        exclude: [/node_modules/],
-      },
-      {
         test: /\.js$/,
-        use: "babel-loader",
+        loader: "babel-loader",
         exclude: /node_modules/,
+        options: {
+          compact: false,
+          cacheDirectory: true,
+          plugins: "@angular/compiler-cli/linker/babel"
+        }
       },
       {
         test: /\.html$/,
-        use: "html-loader",
+        loader: "html-loader",
+        options: {
+          esModule: false,
+        },
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
         use: "file-loader?name=assets/[name].[hash].[ext]",
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "raw-loader",
+            options: {
+              esModule: false,
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },],
       },
-    
     ],
   },
   plugins: [
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)@angular/,
-      path.resolve(__dirname,'..',"./src"), // location of your src
+      path.resolve(__dirname, '..', "./src"), // location of your src
       {} // a map of your routes
     ),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "..", "src", "index.html"),
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
     }),
   ],
 };

@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": false,
+      "inlineSources": false,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "lib": [
+        "es2015",
+        "dom"
+      ],
+      "suppressImplicitAnyIndexErrors": true
+    },
+    "angularCompilerOptions": {
+      "genDir": "aot", // Specify where Angular can create temporary AOT files
+      "skipMetadataEmit" : true // Don't generate not necessary metadata files. They are useful only if you're publishing an Angular UI library
+    },
+  }

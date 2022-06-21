@@ -9,6 +9,6 @@ import AppComponent from "./app.component";
     providers: [],
     exports: []
 })
-export default class AppModule {
+export class AppModule {
 
 }
